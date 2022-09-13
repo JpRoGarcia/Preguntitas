@@ -1,16 +1,15 @@
 package com.example.preguntitas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Printer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnOp1, btnOp2, btnOp3, btnNext;
     Button btnUno, btnDos, btnTres, btnCuatro, btnCinco, btnSeis, btnSiete, btnOcho, btnNueve, btnDiez;
     Button btnOnce, btnDoce, btnTrece, btnCatorce, btnQuince, btnDieciseis, btnDiecisiete, btnODieciocho, btnDieciNueve, btnVeinte;
-    int Score = 0;
+    int Score;
+    int PreguntasBuenas;
     ArrayList<Question> NPreguntas = new ArrayList();
     public String Correcta;
     public int Puntucion;
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         conectar();
         CrearPreguntas();
+        Score = 0;
+        PreguntasBuenas = 0;
 
         btnOp1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
                 PintarPreguntas(btnVeinte);
             }
         });
-
     }
 
     private void conectar() {
@@ -253,12 +254,27 @@ public class MainActivity extends AppCompatActivity {
         NPreguntas.add( new Question("8+8", "9", "16", "45", "16", 5));
         NPreguntas.add( new Question("9+9", "10", "4", "18", "18", 5));
         NPreguntas.add( new Question("10+10", "20", "21", "36", "20", 5));
-        NPreguntas.add( new Question("11+11", "11", "22", "32", "22", 5));
+        NPreguntas.add( new Question("11+11", "53", "22", "42", "22", 5));
+        NPreguntas.add( new Question("12+12", "20", "24", "36", "24", 5));
+        NPreguntas.add( new Question("1*1", "1", "2", "3", "1", 5));
+        NPreguntas.add( new Question("2*2", "5", "4", "3", "4", 5));
+        NPreguntas.add( new Question("3*3", "9", "10", "11", "9", 5));
+        NPreguntas.add( new Question("4*4", "71", "12", "16", "16", 5));
+        NPreguntas.add( new Question("5*5", "20", "52", "53", "20", 5));
+        NPreguntas.add( new Question("6*6", "41", "55", "36", "36", 5));
+        NPreguntas.add( new Question("7*7", "71", "22", "49", "49", 5));
+        NPreguntas.add( new Question("8*8", "61", "25", "64", "64", 5));
+        NPreguntas.add( new Question("9*9", "51", "81", "32", "81", 5));
+        NPreguntas.add( new Question("10*10", "100", "200", "300", "100", 5));
+        NPreguntas.add( new Question("11*11", "164", "122", "121", "121", 5));
+        NPreguntas.add( new Question("12*12", "113", "144", "123", "144", 5));
+        NPreguntas.add( new Question("Cuanto Saque?", "5", "4.5", "4", "5", 5));
     }
 
     public void Comprobar(Button Seleccion){
         if(Seleccion.getText() == Correcta){
             Score += Puntucion;
+            PreguntasBuenas += 1;
             tvScore.setText(Score+"");
             Seleccion.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             Toast.makeText(this, "Pregunta Correcta", Toast.LENGTH_LONG).show();
@@ -268,6 +284,16 @@ public class MainActivity extends AppCompatActivity {
             Seleccion.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             btnAux.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             Toast.makeText(this, "Pregunta Incorrecta", Toast.LENGTH_LONG).show();
+        }
+
+        if((NPreguntas.size() + PreguntasBuenas) < 20) {
+            Intent I = new Intent(getApplicationContext(), GameOver.class);
+            I.putExtra("Over", Score + "");
+            startActivity(I);
+        } else if(PreguntasBuenas == 20){
+            Intent I = new Intent(getApplicationContext(), Win.class);
+            I.putExtra("Win", Score+"");
+            startActivity(I);
         }
     }
 
@@ -287,16 +313,5 @@ public class MainActivity extends AppCompatActivity {
         MostrarPregunta(NQuiz);
         Activar(true);
         ReiniciarColor();
-
-
-        //if(NPreguntas.size() == 0){
-        //    Intent I = new Intent(getApplicationContext(), Win.class);
-        //    I.putExtra("Win", Score+"");
-        //    startActivity(I);
-        //}
-
-
     }
-
-
 }

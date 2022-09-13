@@ -4,16 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="125dp"
+    android:padding="75dp"
     android:orientation="vertical"
     tools:context=".GameOver">
 
     <TextView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Game Over"
         android:textSize="50sp"
+        android:textColor="@color/black"
+        android:gravity="center">
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preguntas Agotadas para poder Ganar"
+        android:textSize="25sp"
         android:textColor="@color/black"
         android:gravity="center">
     </TextView>
@@ -50,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reiniciar"
+        android:gravity="center"
         android:textSize="20sp"
         android:backgroundTint="@color/black"
         android:layout_marginTop="100dp">
