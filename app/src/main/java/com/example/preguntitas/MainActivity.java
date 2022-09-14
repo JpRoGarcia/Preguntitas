@@ -16,17 +16,15 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    ArrayList<Question> NPreguntas = new ArrayList();
     Random random = new Random();
     TextView tvScore, tvQuiz;
     Button btnOp1, btnOp2, btnOp3, btnNext;
     Button btnUno, btnDos, btnTres, btnCuatro, btnCinco, btnSeis, btnSiete, btnOcho, btnNueve, btnDiez;
     Button btnOnce, btnDoce, btnTrece, btnCatorce, btnQuince, btnDieciseis, btnDiecisiete, btnODieciocho, btnDieciNueve, btnVeinte;
-    int Score;
-    int PreguntasBuenas;
-    ArrayList<Question> NPreguntas = new ArrayList();
-    public String Correcta;
-    public int Puntucion;
-    public Button btnAux;
+    int Score, PreguntasBuenas, Puntucion;
+    String Correcta;
+    Button btnAux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 Activar(false);
             }
         });
-
         btnOp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 Activar(false);
             }
         });
-
         btnOp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,133 +63,114 @@ public class MainActivity extends AppCompatActivity {
                 PintarPreguntas(btnUno);
             }
         });
-
         btnDos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnDos);
             }
         });
-
         btnTres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnTres);
             }
         });
-
         btnCuatro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnCuatro);
             }
         });
-
         btnCinco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnCinco);
             }
         });
-
         btnSeis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnSeis);
             }
         });
-
         btnSiete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnSiete);
             }
         });
-
         btnOcho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnOcho);
             }
         });
-
         btnNueve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnNueve);
             }
         });
-
         btnDiez.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnDiez);
             }
         });
-
         btnOnce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnOnce);
             }
         });
-
         btnDoce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnDoce);
             }
         });
-
         btnTrece.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnTrece);
             }
         });
-
         btnCatorce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnCatorce);
             }
         });
-
         btnQuince.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnQuince);
             }
         });
-
         btnDieciseis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnDieciseis);
             }
         });
-
         btnDiecisiete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnDiecisiete);
             }
         });
-
         btnODieciocho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnODieciocho);
             }
         });
-
         btnDieciNueve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PintarPreguntas(btnDieciNueve);
             }
         });
-
         btnVeinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -233,11 +210,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void MostrarPregunta(Button NQuiz){
         btnAux = NQuiz;
+        ArrayList<String> OpcionR = new ArrayList();
         int intRandom = random.nextInt(NPreguntas.size());
+
+        OpcionR.add(NPreguntas.get(intRandom).getOpcionUno());
+        OpcionR.add(NPreguntas.get(intRandom).getOpcionDos());
+        OpcionR.add(NPreguntas.get(intRandom).getOpcionTres());
+
         tvQuiz.setText(NPreguntas.get(intRandom).getPregunta());
-        btnOp1.setText(NPreguntas.get(intRandom).getOpcionUno());
-        btnOp2.setText(NPreguntas.get(intRandom).getOpcionDos());
-        btnOp3.setText(NPreguntas.get(intRandom).getOpcionTres());
+        Toast.makeText(this, OpcionR.toString(), Toast.LENGTH_LONG).show();
+        btnOp1.setText(OpcionRandom(OpcionR));
+        Toast.makeText(this, OpcionR.toString(), Toast.LENGTH_LONG).show();
+        btnOp2.setText(OpcionRandom(OpcionR));
+        Toast.makeText(this, OpcionR.toString(), Toast.LENGTH_LONG).show();
+        btnOp3.setText(OpcionRandom(OpcionR));
         Correcta = NPreguntas.get(intRandom).getCorrecta();
         Puntucion = NPreguntas.get(intRandom).getPuntucion();
         NPreguntas.remove(intRandom);
@@ -249,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         NPreguntas.add( new Question("3+3", "6", "9", "12", "6", 5));
         NPreguntas.add( new Question("4+4", "4", "7", "8", "8", 5));
         NPreguntas.add( new Question("5+5", "10", "6", "2", "10", 5));
-        NPreguntas.add( new Question("6+6", "6", "12", "0", "12", 5));
+        NPreguntas.add( new Question("6+6", "6", "12", "10", "12", 5));
         NPreguntas.add( new Question("7+7", "7", "14", "21", "14", 5));
         NPreguntas.add( new Question("8+8", "9", "16", "45", "16", 5));
         NPreguntas.add( new Question("9+9", "10", "4", "18", "18", 5));
@@ -313,5 +299,13 @@ public class MainActivity extends AppCompatActivity {
         MostrarPregunta(NQuiz);
         Activar(true);
         ReiniciarColor();
+    }
+
+    public String OpcionRandom(ArrayList<String> Opcion){
+        String Aux;
+        int intRandom = random.nextInt(Opcion.size());
+        Aux = (Opcion.get(intRandom));
+        Opcion.remove(intRandom);
+        return Aux;
     }
 }
