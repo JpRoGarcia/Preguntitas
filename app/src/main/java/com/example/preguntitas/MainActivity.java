@@ -218,11 +218,8 @@ public class MainActivity extends AppCompatActivity {
         OpcionR.add(NPreguntas.get(intRandom).getOpcionTres());
 
         tvQuiz.setText(NPreguntas.get(intRandom).getPregunta());
-        Toast.makeText(this, OpcionR.toString(), Toast.LENGTH_LONG).show();
         btnOp1.setText(OpcionRandom(OpcionR));
-        Toast.makeText(this, OpcionR.toString(), Toast.LENGTH_LONG).show();
         btnOp2.setText(OpcionRandom(OpcionR));
-        Toast.makeText(this, OpcionR.toString(), Toast.LENGTH_LONG).show();
         btnOp3.setText(OpcionRandom(OpcionR));
         Correcta = NPreguntas.get(intRandom).getCorrecta();
         Puntucion = NPreguntas.get(intRandom).getPuntucion();
