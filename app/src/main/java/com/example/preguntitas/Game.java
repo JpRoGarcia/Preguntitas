@@ -19,11 +19,11 @@ import java.util.Random;
 
 public class Game extends AppCompatActivity {
 
-    TextView tvScore, tvQuiz, tvGName;
+    TextView tvScore, tvQuiz, tvGName, tvVida;
     Button btnOp1, btnOp2, btnOp3;
     Button btnUno, btnDos, btnTres, btnCuatro, btnCinco, btnSeis, btnSiete, btnOcho, btnNueve, btnDiez;
     Button btnOnce, btnDoce, btnTrece, btnCatorce, btnQuince, btnDieciseis, btnDiecisiete, btnODieciocho, btnDieciNueve, btnVeinte;
-    int Score, PreguntasBuenas, Puntucion;
+    int Score, PreguntasBuenas, Puntucion, vidas;
     String Correcta;
     Button btnAux;
 
@@ -41,6 +41,8 @@ public class Game extends AppCompatActivity {
         Score = 0;
         PreguntasBuenas = 0;
         tvGName.setText(Nombre());
+        vidas = NPreguntas.size() + PreguntasBuenas;
+        tvVida.setText((vidas-19)+"");
 
         btnOp1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +192,7 @@ public class Game extends AppCompatActivity {
         tvScore = findViewById(R.id.tvScore);
         tvGName = findViewById(R.id.tvGName);
         tvQuiz = findViewById(R.id.tvQuiz);
+        tvVida = findViewById(R.id.tvVida);
         btnOp1 = findViewById(R.id.btnOp1);
         btnOp2 = findViewById(R.id.btnOp2);
         btnOp3 = findViewById(R.id.btnOp3);
@@ -247,11 +250,13 @@ public class Game extends AppCompatActivity {
             btnAux.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.Bueno));
             btnAux.setEnabled(false);
         } else {
+            vidas = NPreguntas.size() + PreguntasBuenas;
+            tvVida.setText((vidas-19)+"");
             Seleccion.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.Malo));
             btnAux.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.Malo));
         }
 
-        if((NPreguntas.size() + PreguntasBuenas) < 20) {
+        if(vidas < 20) {
             CrearPuntaje(Score+"");
             Intent I = new Intent(getApplicationContext(), GameOver.class);
             I.putExtra("Over", Score + "");
