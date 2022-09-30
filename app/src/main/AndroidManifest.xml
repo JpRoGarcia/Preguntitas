@@ -14,7 +14,22 @@
         android:theme="@style/Theme.Preguntitas"
         tools:targetApi="31">
         <activity
-            android:name=".Win"
+            android:name=".QuestionUD"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionR"
+            android:exported="false" />
+        <activity
+            android:name=".Game"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionC"
+            android:exported="false" />
+        <activity
+            android:name=".ScoreR"
+            android:exported="false" />
+        <activity
+            android:name=".GameWin"
             android:exported="false" />
         <activity
             android:name=".GameOver"
