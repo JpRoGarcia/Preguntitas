@@ -8,41 +8,25 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GameOver extends AppCompatActivity {
+public class GameWin extends AppCompatActivity {
 
-    TextView tvGScore;
-    Button btnGReiniciar, btnGMenu, btnGPodio;
+    TextView tvWScore;
+    Button btnWReiniciar, btnWMenu, btnWPodio;
     String Score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.activity_game_win);
         conectar();
 
         Bundle pInfo = getIntent().getExtras();
         if(pInfo != null){
-            Score = pInfo.getString("Over");
-            tvGScore.setText(Score);
+            Score = pInfo.getString("GameWin");
+            tvWScore.setText(Score);
         }
 
-        btnGMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent I = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(I);
-            }
-        });
-
-        btnGPodio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent I = new Intent(getApplicationContext(), ScoreR.class);
-                startActivity(I);
-            }
-        });
-
-        btnGReiniciar.setOnClickListener(new View.OnClickListener() {
+        btnWReiniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent I = new Intent(getApplicationContext(), Game.class);
@@ -50,13 +34,29 @@ public class GameOver extends AppCompatActivity {
                 startActivity(I);
             }
         });
+
+        btnWMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent I = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(I);
+            }
+        });
+
+        btnWPodio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent I = new Intent(getApplicationContext(), ScoreR.class);
+                startActivity(I);
+            }
+        });
     }
 
     private void conectar() {
-        tvGScore = findViewById(R.id.tvGScore);
-        btnGReiniciar = findViewById(R.id.btnGReiniciar);
-        btnGPodio = findViewById(R.id.btnGPodio);
-        btnGMenu = findViewById(R.id.btnGMenu);
+        tvWScore = findViewById(R.id.tvWScore);
+        btnWReiniciar = findViewById(R.id.btnWReiniciar);
+        btnWPodio = findViewById(R.id.btnWPodio);
+        btnWMenu = findViewById(R.id.btnWMenu);
     }
 
     public String Nombre(){

@@ -6,8 +6,21 @@
         <entry key="..\:/App Android/Preguntitas/app/src/main/res/layout/activity_game_over.xml" value="0.20416666666666666" />
         <entry key="..\:/App Android/Preguntitas/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/App Android/Preguntitas/app/src/main/res/layout/activity_win.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_crear_preguntas.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_eepreguntas.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_game.xml" value="0.20416666666666666" />
         <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_game_over.xml" value="0.20416666666666666" />
-        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_game_win.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_preguntas.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_question_c.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_question_r.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_question_ud.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_ranking.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_rol.xml" value="0.19010416666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_roles.xml" value="0.203125" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_score_c.xml" value="0.20416666666666666" />
+        <entry key="..\:/App Android/PreguntitasV2/app/src/main/res/layout/activity_score_r.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/b14s204/AndroidStudioProjects/Preguntitas/app/src/main/res/layout/activity_main.xml" value="0.36102564102564105" />
       </map>
     </option>

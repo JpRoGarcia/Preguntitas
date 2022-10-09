@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="75dp"
     android:orientation="vertical"
+    android:gravity="center"
+    android:padding="75dp"
     tools:context=".GameOver">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Game Over"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:textColor="@color/black"
         android:gravity="center">
     </TextView>
@@ -56,14 +57,36 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnGMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:backgroundTint="@color/S"
+        android:layout_marginTop="75dp">
+    </Button>
+
+    <Button
+        android:id="@+id/btnGPodio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Podio"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:backgroundTint="@color/S"
+        android:layout_marginTop="10dp">
+    </Button>
+
+    <Button
         android:id="@+id/btnGReiniciar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reiniciar"
         android:gravity="center"
         android:textSize="20sp"
-        android:backgroundTint="@color/black"
-        android:layout_marginTop="100dp">
+        android:backgroundTint="@color/P"
+        android:layout_marginTop="10dp">
     </Button>
 
 </LinearLayout>

@@ -1,6 +1,8 @@
-package com.example.preguntitas;
+package com.example.preguntitas.object;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
     private String Pregunta;
     private String OpcionUno;
     private String OpcionDos;
@@ -63,5 +65,12 @@ public class Question {
 
     public void setPuntucion(int puntucion) {
         Puntucion = puntucion;
+    }
+
+    @Override
+    public String toString() {
+        return  "Pregunta: " + Pregunta + '\n' +
+                "Opciones: " + OpcionUno + " | " + OpcionDos + " | " + OpcionTres + '\n' +
+                "Puntuacion: " + Puntucion;
     }
 }

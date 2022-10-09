@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:gravity="center"
+    tools:context=".ScoreR">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Podio"
+            android:gravity="center"
+            android:textSize="40dp"
+            android:textColor="@color/black">
+        </TextView>
+
+        <ListView
+            android:id="@+id/LvRanking"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="10dp">
+        </ListView>
+
+        <Button
+            android:id="@+id/btnPMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:backgroundTint="@color/S"
+            android:layout_marginTop="15dp">
+        </Button>
+
+    </LinearLayout>
+</LinearLayout>
