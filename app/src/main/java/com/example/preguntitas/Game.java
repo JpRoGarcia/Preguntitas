@@ -9,11 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.example.preguntitas.files.archivoPlanitoQuestion;
-import com.example.preguntitas.files.archivoPlanitoScore;
+import com.example.preguntitas.database.CRUDQuestion;
+import com.example.preguntitas.database.CRUDScore;
 import com.example.preguntitas.object.Question;
+import com.example.preguntitas.object.Score;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -29,15 +29,15 @@ public class Game extends AppCompatActivity {
 
     Random random = new Random();
     ArrayList<Question> NPreguntas = new ArrayList();
-    archivoPlanitoQuestion objAP = new archivoPlanitoQuestion(this);
-    archivoPlanitoScore objAPS = new archivoPlanitoScore(this);
+    CRUDQuestion objDB = new CRUDQuestion(this);
+    CRUDScore objDBs = new CRUDScore(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         conectar();
-        CrearPreguntas();
+        NPreguntas = objDB.ReadQuestions();
         Score = 0;
         PreguntasBuenas = 0;
         tvGName.setText(Nombre());
@@ -224,9 +224,9 @@ public class Game extends AppCompatActivity {
         ArrayList<String> OpcionR = new ArrayList();
         int intRandom = random.nextInt(NPreguntas.size());
 
+        OpcionR.add(NPreguntas.get(intRandom).getCorrecta());
         OpcionR.add(NPreguntas.get(intRandom).getOpcionUno());
         OpcionR.add(NPreguntas.get(intRandom).getOpcionDos());
-        OpcionR.add(NPreguntas.get(intRandom).getOpcionTres());
 
         tvQuiz.setText(NPreguntas.get(intRandom).getPregunta());
         btnOp1.setText(OpcionRandom(OpcionR));
@@ -235,10 +235,6 @@ public class Game extends AppCompatActivity {
         Correcta = NPreguntas.get(intRandom).getCorrecta();
         Puntucion = NPreguntas.get(intRandom).getPuntucion();
         NPreguntas.remove(intRandom);
-    }
-
-    public void CrearPreguntas(){
-        NPreguntas = objAP.GuardarArrayPregunta();
     }
 
     public void Comprobar(Button Seleccion){
@@ -257,13 +253,13 @@ public class Game extends AppCompatActivity {
         }
 
         if(vidas < 20) {
-            CrearPuntaje(Score+"");
+            CrearPuntaje(Nombre(), (vidas-19), Score);
             Intent I = new Intent(getApplicationContext(), GameOver.class);
             I.putExtra("Over", Score + "");
             I.putExtra("Name", Nombre());
             startActivity(I);
         } else if(PreguntasBuenas == 20){
-            CrearPuntaje(Score+"");
+            CrearPuntaje(Nombre(), (vidas-19), Score);
             Intent I = new Intent(getApplicationContext(), GameWin.class);
             I.putExtra("GameWin", Score+"");
             I.putExtra("Name", Nombre());
@@ -297,13 +293,17 @@ public class Game extends AppCompatActivity {
         return Aux;
     }
 
-    public void CrearPuntaje(String Puntos){
-        try{
-            objAPS.EscribirPuntaje(Nombre() + '/');
-            objAPS.EscribirPuntaje(Puntos + '.');
-        }
-        catch (IOException ex){
-            ex.getMessage();
+    public void CrearPuntaje(String Name, int Vidas, int Puntos){
+        ArrayList<Score> aux = objDBs.ReadScore(Name);
+        if(aux.size() == 0){
+            objDBs.CreateScores(Name, Vidas, Puntos);
+        } else {
+            if(aux.get(0).getPoint() < Puntos){
+                objDBs.UpdateScore(Name, Vidas, Puntos);
+            }
+            if(aux.get(0).getPoint() == Puntos &&  aux.get(0).getVida() < Vidas){
+                objDBs.UpdateScore(Name, Vidas, Puntos);
+            }
         }
     }
 

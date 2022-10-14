@@ -9,16 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.preguntitas.files.archivoPlanitoQuestion;
-
-import java.io.IOException;
+import com.example.preguntitas.database.CRUDQuestion;
 
 public class QuestionC extends AppCompatActivity {
 
     Button btnGuardar, btnPcVolver;
     EditText etPregunta, etOpcionUno, etOpcionDos, etCorrecta, etPuntos;
     String Pregunta, OpOK, OpUno, OpDos, OpPoint;
-    archivoPlanitoQuestion objAP = new archivoPlanitoQuestion(this);
+    CRUDQuestion objDB = new CRUDQuestion(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +32,14 @@ public class QuestionC extends AppCompatActivity {
                 OpUno = etOpcionUno.getText().toString();
                 OpDos = etOpcionDos.getText().toString();
                 OpPoint = etPuntos.getText().toString();
-                try{
-                    etPregunta.setText("");
-                    etOpcionUno.setText("");
-                    etOpcionDos.setText("");
-                    etCorrecta.setText("");
-                    etPuntos.setText("");
 
-                    objAP.EscribirPregunta(Pregunta + '/');
-                    objAP.EscribirPregunta(OpOK + '/');
-                    objAP.EscribirPregunta(OpUno + '/');
-                    objAP.EscribirPregunta(OpDos + '/');
-                    objAP.EscribirPregunta(OpPoint + '.');
-
-                    Toast.makeText(QuestionC.this, "Pregunta Creada", Toast.LENGTH_SHORT).show();
-                }
-                catch (IOException ex){
-                    ex.getMessage();
-                }
+                objDB.CreateQuestion(Pregunta, OpOK, OpUno, OpDos, OpPoint);
+                Toast.makeText(getApplicationContext(), "Pregunta Creada", Toast.LENGTH_SHORT).show();
+                etPregunta.setText("");
+                etCorrecta.setText("");
+                etOpcionUno.setText("");
+                etOpcionDos.setText("");
+                etPuntos.setText("");
             }
         });
 
@@ -73,4 +61,5 @@ public class QuestionC extends AppCompatActivity {
         etCorrecta = findViewById(R.id.etCorrecta);
         etPuntos = findViewById(R.id.etPuntos);
     }
+
 }

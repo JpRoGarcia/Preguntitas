@@ -7,7 +7,7 @@
     tools:context=".QuestionR"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="30dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,12 +23,13 @@
             android:textColor="@color/black">
         </TextView>
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/LvQuestion"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:layout_marginTop="10dp">
-        </ListView>
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center">
+        </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"

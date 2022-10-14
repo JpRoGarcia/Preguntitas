@@ -3,26 +3,25 @@ package com.example.preguntitas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.preguntitas.files.archivoPlanitoQuestion;
+import com.example.preguntitas.ListAdapter.ListAdapterQuestion;
+import com.example.preguntitas.database.CRUDQuestion;
 import com.example.preguntitas.object.Question;
 
 import java.util.ArrayList;
 
-public class QuestionR extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class QuestionR extends AppCompatActivity {
 
-    ListView LvQuestion;
+    RecyclerView LvQuestion;
     ArrayList<Question> Preguntas = new ArrayList<>();
-    ArrayAdapter adapter;
+    ListAdapterQuestion adapter;
     Button btnQMenu, btnQAgregar;
-
-    archivoPlanitoQuestion objAP = new archivoPlanitoQuestion(this);
+    CRUDQuestion objDB = new CRUDQuestion(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,10 @@ public class QuestionR extends AppCompatActivity implements AdapterView.OnItemCl
     }
 
     private void adaptar() {
-        Preguntas = objAP.GuardarArrayPregunta();
-        adapter = new ArrayAdapter<Question>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, Preguntas);
+        Preguntas = objDB.ReadQuestions();
+        adapter = new ListAdapterQuestion(Preguntas, this);
+        LvQuestion.setHasFixedSize(true);
+        LvQuestion.setLayoutManager(new LinearLayoutManager(this));
         LvQuestion.setAdapter(adapter);
     }
 
@@ -59,16 +60,7 @@ public class QuestionR extends AppCompatActivity implements AdapterView.OnItemCl
         btnQMenu=findViewById(R.id.btnQMenu);
         btnQAgregar=findViewById(R.id.btnQAgregar);
         LvQuestion=findViewById(R.id.LvQuestion);
-        LvQuestion.setOnItemClickListener(this);
+
     }
 
-
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-        Intent I = new Intent(getApplicationContext(), QuestionUD.class);
-        I.putExtra("Arreglo", Preguntas);
-        I.putExtra("Posicion", posicion);
-        startActivity(I);
-    }
 }

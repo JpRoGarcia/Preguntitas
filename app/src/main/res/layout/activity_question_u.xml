@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuestionUD"
+    tools:context=".QuestionU"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="50dp">
@@ -75,16 +75,6 @@
             android:layout_height="wrap_content"
             android:text="Modificar"
             android:layout_marginTop="40dp"
-            android:textSize="20sp"
-            android:backgroundTint="@color/S">
-        </Button>
-
-        <Button
-            android:id="@+id/btnEDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Eliminar"
-            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:backgroundTint="@color/S">
         </Button>

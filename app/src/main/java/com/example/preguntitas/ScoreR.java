@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.preguntitas.files.archivoPlanitoScore;
+import com.example.preguntitas.database.CRUDScore;
 import com.example.preguntitas.object.Score;
 
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ public class ScoreR extends AppCompatActivity  {
     ArrayList<Score> Puntos = new ArrayList<>();
     ArrayAdapter adapter;
     Button btnPMenu;
+    CRUDScore objDB = new CRUDScore(this);
 
-    archivoPlanitoScore objAP = new archivoPlanitoScore(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class ScoreR extends AppCompatActivity  {
     }
 
     public void adaptar(){
-        Puntos = objAP.GuardarPuntaje();
+        Puntos = objDB.ReadScore();
         Collections.sort(Puntos, new Comparator<Score>() {
             @Override
             public int compare(Score S1, Score S2) {
