@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuestionU"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="50dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvWelcom"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:text="Editar Pregunta">
+        </TextView>
+
+        <EditText
+            android:id="@+id/etEPregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Pregunta"
+            android:textSize="20sp"
+            android:layout_marginTop="50dp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/etECorrecta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Opcion Correcta"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/etEOpcionUno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Opcion Uno"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/etEOpcionDos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Opcion Dos"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/etEPuntos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Puntuacion"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp">
+        </EditText>
+
+        <Button
+            android:id="@+id/btnEGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modificar"
+            android:layout_marginTop="40dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/S">
+        </Button>
+
+        <Button
+            android:id="@+id/btnEVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/S">
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>
