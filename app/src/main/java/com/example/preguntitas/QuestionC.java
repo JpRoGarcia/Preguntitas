@@ -10,13 +10,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.preguntitas.database.CRUDQuestion;
+import com.example.preguntitas.object.Question;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class QuestionC extends AppCompatActivity {
 
     Button btnGuardar, btnPcVolver;
     EditText etPregunta, etOpcionUno, etOpcionDos, etCorrecta, etPuntos;
-    String Pregunta, OpOK, OpUno, OpDos, OpPoint;
+    String Pregunta, OpOK, OpUno, OpDos;
+    int OpPoint;
     CRUDQuestion objDB = new CRUDQuestion(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,7 @@ public class QuestionC extends AppCompatActivity {
                 OpOK = etCorrecta.getText().toString();
                 OpUno = etOpcionUno.getText().toString();
                 OpDos = etOpcionDos.getText().toString();
-                OpPoint = etPuntos.getText().toString();
+                OpPoint = Integer.parseInt( etPuntos.getText().toString());
 
                 objDB.CreateQuestion(Pregunta, OpOK, OpUno, OpDos, OpPoint);
                 Toast.makeText(getApplicationContext(), "Pregunta Creada", Toast.LENGTH_SHORT).show();
@@ -61,5 +66,4 @@ public class QuestionC extends AppCompatActivity {
         etCorrecta = findViewById(R.id.etCorrecta);
         etPuntos = findViewById(R.id.etPuntos);
     }
-
 }

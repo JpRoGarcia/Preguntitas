@@ -81,7 +81,12 @@ public class ListAdapterQuestion extends RecyclerView.Adapter<ListAdapterQuestio
                 @Override
                 public void onClick(View view) {
                     Intent I = new Intent(ctx, QuestionU.class);
-                    I.putExtra("id", item.getId()+"");
+                    I.putExtra("id", item.getId());
+                    I.putExtra("Q", item.getPregunta());
+                    I.putExtra("C", item.getCorrecta());
+                    I.putExtra("Opc1", item.getOpcionUno());
+                    I.putExtra("Opc2", item.getOpcionDos());
+                    I.putExtra("P", item.getPuntuacion());
                     ctx.startActivity(I);
                 }
             });

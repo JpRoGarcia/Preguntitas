@@ -7,10 +7,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.preguntitas.database.CRUDScore;
 import com.example.preguntitas.object.Score;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +27,7 @@ public class ScoreR extends AppCompatActivity  {
     ArrayList<Score> Puntos = new ArrayList<>();
     ArrayAdapter adapter;
     Button btnPMenu;
-    CRUDScore objDB = new CRUDScore(this);
+    DatabaseReference miDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +51,37 @@ public class ScoreR extends AppCompatActivity  {
     }
 
     public void adaptar(){
-        Puntos = objDB.ReadScore();
-        Collections.sort(Puntos, new Comparator<Score>() {
+        miDB = FirebaseDatabase.getInstance().getReference();
+        miDB.child("Score").addValueEventListener(new ValueEventListener() {
             @Override
-            public int compare(Score S1, Score S2) {
-                return new Integer(S2.getPoint()).compareTo(new Integer(S1.getPoint()));
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot objsnapshot : snapshot.getChildren()) {
+                    Puntos.add(new Score(objsnapshot.child("id").getValue().toString(),
+                            objsnapshot.child("name").getValue().toString(),
+                            Integer.parseInt(objsnapshot.child("vida").getValue().toString()),
+                            Integer.parseInt(objsnapshot.child("point").getValue().toString())));
+                }
+
+                Collections.sort(Puntos, new Comparator<Score>() {
+                    @Override
+                    public int compare(Score S1, Score S2) {
+                        return new Integer(S2.getPoint()).compareTo(new Integer(S1.getPoint()));
+                    }
+                });
+                adapter = new ArrayAdapter<Score>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, Puntos);
+                LvRanking.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-        adapter = new ArrayAdapter<Score>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, Puntos);
-        LvRanking.setAdapter(adapter);
+
+
+
+
+
     }
 }

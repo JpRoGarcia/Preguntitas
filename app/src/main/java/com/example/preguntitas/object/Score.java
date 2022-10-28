@@ -1,23 +1,23 @@
 package com.example.preguntitas.object;
 
 public class Score {
-    int Id;
+    String Id;
     String name;
     int Vida;
     int Point;
 
-    public Score(int id, String name, int vida, int point) {
+    public Score(String id, String name, int vida, int point) {
         Id = id;
         this.name = name;
         Vida = vida;
         Point = point;
     }
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
 

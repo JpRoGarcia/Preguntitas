@@ -17,10 +17,11 @@ import java.util.ArrayList;
 public class QuestionU extends AppCompatActivity {
 
     ArrayList<Question> Preguntas = new ArrayList();
-    int Posicion;
     Button btnEVolver, btnEGuardar;
     EditText etEPregunta, etECorrecta, etEOpcionUno, etEOpcionDos, etEPuntos;
     CRUDQuestion objDB = new CRUDQuestion(this);
+    String id, P, Correcta, OpUno, OpDos;
+    int Puntos;
 
 
     @Override
@@ -28,26 +29,26 @@ public class QuestionU extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_u);
         conectar();
-        Posicion = Integer.parseInt(getIntent().getStringExtra("id"));
-        Preguntas = objDB.ReadQuestion(Posicion);
+        Preguntas = Llamar();
 
         etEPregunta.setText(Preguntas.get(0).getPregunta());
         etECorrecta.setText(Preguntas.get(0).getCorrecta());
         etEOpcionUno.setText(Preguntas.get(0).getOpcionUno());
         etEOpcionDos.setText(Preguntas.get(0).getOpcionDos());
-        etEPuntos.setText((Preguntas.get(0).getPuntucion())+"");
+        etEPuntos.setText((Preguntas.get(0).getPuntuacion())+"");
 
         btnEGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String P = etEPregunta.getText().toString();
-                String Correcta = etECorrecta.getText().toString();
-                String OpUno = etEOpcionUno.getText().toString();
-                String OpDos = etEOpcionDos.getText().toString();
-                int Puntos = Integer.parseInt(etEPuntos.getText().toString());
+                id = Preguntas.get(0).getId();
+                P = etEPregunta.getText().toString();
+                Correcta = etECorrecta.getText().toString();
+                OpUno = etEOpcionUno.getText().toString();
+                OpDos = etEOpcionDos.getText().toString();
+                Puntos = Integer.parseInt(etEPuntos.getText().toString());
 
-                objDB.UpdateQuestion(Posicion, P, Correcta, OpUno, OpDos, Puntos+"");
+                objDB.UpdateQuestion(id, P, Correcta, OpUno, OpDos, Puntos);
 
                 Toast.makeText(QuestionU.this, "Pregunta Modificada", Toast.LENGTH_SHORT).show();
                 Intent I = new Intent(getApplicationContext(), QuestionR.class);
@@ -74,4 +75,21 @@ public class QuestionU extends AppCompatActivity {
         etEOpcionDos = findViewById(R.id.etEOpcionDos);
         etEPuntos = findViewById(R.id.etEPuntos);
     }
+
+    public ArrayList<Question> Llamar() {
+        ArrayList<Question> aux = new ArrayList<>();
+        Bundle pInfo = getIntent().getExtras();
+        id = pInfo.getString("id");
+        P = pInfo.getString("Q");
+        Correcta = pInfo.getString("C");
+        OpUno = pInfo.getString("Opc1");
+        OpDos = pInfo.getString("Opc2");
+        Puntos = pInfo.getInt("P");
+        aux.add(new Question(id, P, Correcta, OpUno, OpDos, Puntos));
+        return aux;
+    }
+
+
+
+
 }

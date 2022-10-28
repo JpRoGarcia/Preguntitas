@@ -3,27 +3,27 @@ package com.example.preguntitas.object;
 import java.io.Serializable;
 
 public class Question implements Serializable {
-    private int id;
+    private String id;
     private String Pregunta;
     private String Correcta;
     private String OpcionUno;
     private String OpcionDos;
-    private int Puntucion;
+    private int Puntuacion;
 
-    public Question(int id, String pregunta, String correcta, String opcionUno, String opcionDos, int puntucion) {
+    public Question(String id, String pregunta, String correcta, String opcionUno, String opcionDos, int puntuacion) {
         this.id = id;
         Pregunta = pregunta;
         Correcta = correcta;
         OpcionUno = opcionUno;
         OpcionDos = opcionDos;
-        Puntucion = puntucion;
+        Puntuacion = puntuacion;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,11 +59,11 @@ public class Question implements Serializable {
         OpcionDos = opcionDos;
     }
 
-    public int getPuntucion() {
-        return Puntucion;
+    public int getPuntuacion() {
+        return Puntuacion;
     }
 
-    public void setPuntucion(int puntucion) {
-        Puntucion = puntucion;
+    public void setPuntuacion(int puntuacion) {
+        Puntuacion = puntuacion;
     }
 }

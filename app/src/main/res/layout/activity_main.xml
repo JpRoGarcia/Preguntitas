@@ -10,11 +10,9 @@
     android:gravity="center">
 
     <LinearLayout
-        android:id="@+id/llUno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible"
         android:gravity="center">
 
         <TextView
@@ -24,67 +22,64 @@
             android:gravity="center"
             android:textSize="40sp"
             android:textColor="@color/black"
-            android:text="Bienvenido">
+            android:text="">
         </TextView>
 
-        <Button
+        <LinearLayout
+            android:id="@+id/llUno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnAdmin"
-            android:text="Administrar"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/S"
-            android:layout_marginTop="100dp"
-            ></Button>
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnJugar"
-            android:text="Jugar"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/P"
-            android:layout_marginTop="15dp"
-            ></Button>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAdmin"
+                android:text="Administrar"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/S"
+                android:layout_marginTop="100dp"
+                ></Button>
 
-        <Button
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llDos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnPuntaje"
-            android:text="Podio"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/S"
-            android:layout_marginTop="15dp"
-            ></Button>
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnJugar"
+                android:text="Jugar"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/P"
+                android:layout_marginTop="15dp"
+                ></Button>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnPuntaje"
+                android:text="Podio"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/S"
+                android:layout_marginTop="15dp"
+                ></Button>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llDos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone">
-        <EditText
-            android:id="@+id/etNick"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ingrese Nick"
-            android:textSize="20sp">
-        </EditText>
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Empezar"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/S"
-            android:layout_marginTop="15dp"
-            >
-        </Button>
-    </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="50dp"
+        android:gravity="center"
+    tools:context=".UsersS">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inicio de Sesion"
+
+        android:textSize="40dp"/>
+
+    <EditText
+        android:id="@+id/edCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Correo"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contrasena"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp">
+    </EditText>
+
+    <Button
+        android:id="@+id/btnInicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Sesion"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00ffff">
+    </Button>
+
+    <Button
+        android:id="@+id/btnCrear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Cuenta"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/S">
+    </Button>
+
+
+</LinearLayout>

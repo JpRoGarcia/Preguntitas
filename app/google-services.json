@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "228295470018",
+    "firebase_url": "https://preguntitas-69fd0-default-rtdb.firebaseio.com",
+    "project_id": "preguntitas-69fd0",
+    "storage_bucket": "preguntitas-69fd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228295470018:android:fd4e90f5aefb15705a445b",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228295470018-af5qcl70cenqpuchp4j3ar48e754n21k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQW3moduHTSkdie3IRXaX24I_yoPg81Ds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228295470018-af5qcl70cenqpuchp4j3ar48e754n21k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228295470018:android:d5fb07124749ce765a445b",
+        "android_client_info": {
+          "package_name": "com.example.preguntitas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228295470018-af5qcl70cenqpuchp4j3ar48e754n21k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQW3moduHTSkdie3IRXaX24I_yoPg81Ds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228295470018-af5qcl70cenqpuchp4j3ar48e754n21k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp"
+    android:gravity="center"
+    tools:context=".UsersR">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registro"
+        android:textSize="40dp"/>
+
+
+    <EditText
+        android:id="@+id/edRName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/edRCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Correo"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/edRPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contrasena"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp">
+    </EditText>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/opType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_Admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:checked="true"
+            android:textSize="20dp"
+            android:text="Admin" />
+
+        <RadioButton
+            android:id="@+id/radio_Jugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:textSize="20dp"
+            android:text="Jugador" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnCrear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Cuenta"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00ffff">
+    </Button>
+
+    <Button
+        android:id="@+id/btnRVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/S">
+    </Button>
+
+</LinearLayout>

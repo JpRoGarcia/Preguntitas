@@ -4,79 +4,66 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.lights.LightsManager;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.preguntitas.object.Question;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class CRUDQuestion {
     public Context ctx;
+    DatabaseReference miDB;
+
 
     public CRUDQuestion(Context ctx) {this.ctx =ctx;}
 
-    public void CreateQuestion(String Pregunta,  String Correcta, String OpcionUno, String OpcionDos, String Puntos){
-        DbHelper helper = new DbHelper(ctx, "Questions", null, 1);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("pregunta", Pregunta);
-        cv.put("opcionUno", OpcionUno);
-        cv.put("opcionDos", OpcionDos);
-        cv.put("Correcta", Correcta);
-        cv.put("puntaje", Puntos);
-        db.insert("Questions", null, cv);
-        db.close();
+    public void CreateQuestion(String Pregunta,  String Correcta, String OpcionUno, String OpcionDos, int Puntos){
+        miDB = FirebaseDatabase.getInstance().getReference();
+        String Id = miDB.push().getKey();
+        Question Q = new Question(Id, Pregunta, Correcta, OpcionUno, OpcionDos, Puntos);
+        miDB.child("Question").child(Id).setValue(Q);
     }
 
-    public ArrayList<Question> ReadQuestion(int id){
-        ArrayList<Question> aux = new ArrayList<>();
-        DbHelper helper = new DbHelper(ctx, "Questions", null, 1);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String SQL = "Select * from Questions where Id = '" + id +"'";
-        Cursor C = db.rawQuery(SQL, null);
-
-        if(C.moveToFirst()){
-            do {
-                aux.add( new Question(C.getInt(0), C.getString(1), C.getString(2), C.getString(3), C.getString(4), C.getInt(5)));
-            } while (C.moveToNext());
-        }
-        db.close();
-        return aux;
+    public void UpdateQuestion(String Id, String Pregunta,  String Correcta, String OpcionUno, String OpcionDos, int Puntos){
+        miDB = FirebaseDatabase.getInstance().getReference();
+        Question Q = new Question(Id, Pregunta, Correcta, OpcionUno, OpcionDos, Puntos);
+        miDB.child("Question").child(Id).setValue(Q);
     }
 
-    public ArrayList<Question> ReadQuestions(){
-        ArrayList<Question> aux = new ArrayList<>();
-        DbHelper helper = new DbHelper(ctx, "Questions", null, 1);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String SQL = "Select * from Questions";
-        Cursor C = db.rawQuery(SQL, null);
-        if(C.moveToFirst()){
-            do {
-                aux.add(new Question(C.getInt(0), C.getString(1), C.getString(2), C.getString(3), C.getString(4), C.getInt(5)));
-            } while (C.moveToNext());
-        }
-        db.close();
-        return aux;
+    public void DeleteQuestion(String Id){
+        miDB = FirebaseDatabase.getInstance().getReference();
+        miDB.child("Question").child(Id).removeValue();
     }
+/**
+    public void ReadQuestions(ArrayList<Question> Preguntas){
+        miDB = FirebaseDatabase.getInstance().getReference();
+        miDB.child("Question").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot objsnapshot : snapshot.getChildren()) {
+                    Preguntas.add(new Question(objsnapshot.child("id").getValue().toString(),
+                            objsnapshot.child("pregunta").getValue().toString(),
+                            objsnapshot.child("correcta").getValue().toString(),
+                            objsnapshot.child("opcionUno").getValue().toString(),
+                            objsnapshot.child("opcionDos").getValue().toString(),
+                            Integer.parseInt(objsnapshot.child("puntuacion").getValue().toString())));
+                }
+            }
 
-    public void UpdateQuestion(int id, String Pregunta,  String Correcta, String OpcionUno, String OpcionDos, String Puntos){
-        DbHelper helper = new DbHelper(ctx, "Questions", null, 1);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String SQL = "UPDATE Questions " +
-                "set pregunta = '" + Pregunta +"'" +
-                ", Correcta = '" + Correcta +"' " +
-                ", opcionUno = '" + OpcionUno +"' " +
-                ", opcionDos = '" + OpcionDos +"' " +
-                ", puntaje = '" + Puntos +"' " +
-                "where Id = '" + id +"'";
-        db.execSQL(SQL);
-        db.close();
-    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-    public void DeleteQuestion(int id){
-        DbHelper helper = new DbHelper(ctx, "Questions", null, 1);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String SQL = "Delete from Questions where Id = '" + id +"'";
-        db.execSQL(SQL);
-        db.close();
+            }
+        });
     }
+ */
 }

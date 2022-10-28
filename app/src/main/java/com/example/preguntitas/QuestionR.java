@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.preguntitas.ListAdapter.ListAdapterQuestion;
 import com.example.preguntitas.database.CRUDQuestion;
 import com.example.preguntitas.object.Question;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -21,14 +28,16 @@ public class QuestionR extends AppCompatActivity {
     ArrayList<Question> Preguntas = new ArrayList<>();
     ListAdapterQuestion adapter;
     Button btnQMenu, btnQAgregar;
-    CRUDQuestion objDB = new CRUDQuestion(this);
+    DatabaseReference miDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_r);
         conectar();
+        miDB = FirebaseDatabase.getInstance().getReference();
         adaptar();
+
 
         btnQMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,11 +58,29 @@ public class QuestionR extends AppCompatActivity {
     }
 
     private void adaptar() {
-        Preguntas = objDB.ReadQuestions();
-        adapter = new ListAdapterQuestion(Preguntas, this);
-        LvQuestion.setHasFixedSize(true);
-        LvQuestion.setLayoutManager(new LinearLayoutManager(this));
-        LvQuestion.setAdapter(adapter);
+        miDB.child("Question").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Preguntas.clear();
+                for (DataSnapshot objsnapshot : snapshot.getChildren()) {
+                    Preguntas.add(new Question(objsnapshot.child("id").getValue().toString(),
+                            objsnapshot.child("pregunta").getValue().toString(),
+                            objsnapshot.child("correcta").getValue().toString(),
+                            objsnapshot.child("opcionUno").getValue().toString(),
+                            objsnapshot.child("opcionDos").getValue().toString(),
+                            Integer.parseInt(objsnapshot.child("puntuacion").getValue().toString())));
+                }
+                adapter = new ListAdapterQuestion(Preguntas, getApplicationContext());
+                LvQuestion.setHasFixedSize(true);
+                LvQuestion.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                LvQuestion.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void conectar() {
@@ -62,5 +89,7 @@ public class QuestionR extends AppCompatActivity {
         LvQuestion=findViewById(R.id.LvQuestion);
 
     }
+
+
 
 }
